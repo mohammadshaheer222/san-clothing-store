@@ -5,7 +5,7 @@ interface BackgroundImageProps {
   src: string;
   alt: string;
   overlay?: boolean;
-  overlayOpacity?: string; // e.g., '10', '20', etc. for bg-black/10
+  overlayOpacity?: string; // e.g., '10', '20', etc. for bg-primary/10
   zoomAnimation?: boolean;
   priority?: boolean;
   className?: string;
@@ -30,7 +30,7 @@ export const BackgroundImage = ({
         className={`object-cover object-center ${zoomAnimation ? 'scale-105 animate-subtle-zoom' : ''}`}
       />
       {overlay && (
-        <div className={`absolute inset-0 bg-black/${overlayOpacity}`} />
+        <div className={`absolute inset-0 bg-primary/${overlayOpacity}`} />
       )}
     </div>
   );

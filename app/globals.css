@@ -5,6 +5,7 @@
   --foreground: #171717;
   --primary: #0C2565;
   --secondary: #FFFFFF;
+  --white-soft: #f9fafb;
 }
 
 
@@ -23,6 +24,7 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-white-soft: #F9FAFB;
   --font-sans: var(--font-geist-sans);
   --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
@@ -32,6 +34,7 @@
       opacity: 0;
       transform: translateY(-10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -43,6 +46,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -50,8 +54,13 @@
   }
 
   @keyframes subtle-zoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
+    from {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1.05);
+    }
   }
 
   --animate-fade-in-down: fade-in-down 0.5s ease-out forwards;
@@ -61,6 +70,7 @@
 
 @utility nav-link-hover {
   position: relative;
+
   &::after {
     content: '';
     position: absolute;
@@ -71,6 +81,7 @@
     background-color: currentColor;
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   &:hover::after {
     width: 100%;
   }

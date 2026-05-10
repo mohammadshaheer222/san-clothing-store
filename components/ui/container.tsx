@@ -20,7 +20,7 @@ export const Container = ({
   };
 
   return (
-    <div className={`mx-auto px-12 mob-land:px-6 ${sizes[size]} ${className}`}>
+    <div className={`mx-auto px-5 ${sizes[size]} ${className}`}>
       {children}
     </div>
   );

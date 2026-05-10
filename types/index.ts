@@ -16,3 +16,16 @@ export interface SiteConfig {
   name: string;
   description: string;
 }
+
+export interface Product {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  oldPrice?: number;
+  discount?: string;
+  rating: number;
+  reviews: number;
+  image: string;
+  deliveryText: string;
+}

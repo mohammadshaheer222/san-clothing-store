@@ -15,7 +15,7 @@ export const Hero = () => {
           className="object-cover object-center scale-105 animate-subtle-zoom"
         />
         {/* Subtle Overlay to make text pop */}
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-primary/10" />
       </div>
 
       {/* Content Overlay */}
