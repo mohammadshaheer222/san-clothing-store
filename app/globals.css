@@ -3,14 +3,79 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #0C2565;
+  --secondary: #FFFFFF;
 }
+
+
+@custom-variant lap (@media (max-width: 1600px));
+@custom-variant md-lap (@media (max-width: 1400px));
+@custom-variant sm-lap (@media (max-width: 1200px));
+@custom-variant ipad-land (@media (max-width: 1024px));
+@custom-variant mob-land (@media (max-width: 767px));
+@custom-variant mob-lg (@media (max-width: 640px));
+@custom-variant mob (@media (max-width: 480px));
+@custom-variant sm-mob (@media (max-width: 375px));
+@custom-variant xs-mob (@media (max-width: 360px));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
+
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes subtle-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  --animate-fade-in-down: fade-in-down 0.5s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-subtle-zoom: subtle-zoom 10s ease-in-out infinite alternate;
 }
+
+@utility nav-link-hover {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
