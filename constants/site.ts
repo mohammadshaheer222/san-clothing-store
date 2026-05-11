@@ -1,11 +1,11 @@
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Contact', href: '/' },
+  { label: 'Products', href: '/' },
 ] as const;
 
 export const SECONDARY_NAV_LINKS = [
   { label: 'ABOUT', href: '/about' },
-  { label: 'CONTACT US', href: '/contact' },
+  { label: 'Products', href: '/' },
 ] as const;
 
 export const SITE_CONFIG = {

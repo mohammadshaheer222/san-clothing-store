@@ -87,3 +87,49 @@ export const COLLECTION_DATA = {
     }
   ]
 };
+export const COLLECTION_PROMO_DATA = {
+  title: "PERFECT STYLE",
+  description: "MaisonGrozavu is it is a statement of who you are",
+  buttonText: "View All Products",
+  leftImage: "/collection-promo-left.png",
+  rightImage: "/collection-promo-right.png"
+};
+
+export const BEST_SELLER_DATA = {
+  title: "Best Sellers",
+  description: "Our most-loved pieces, curated for your journey. Discover why these are the top choices for our community.",
+  products: [
+    {
+      id: 'bs1',
+      title: "Signature Hoodie - Heavyweight Cotton for Maximum Comfort",
+      price: 6500,
+      oldPrice: 9500,
+      discount: "-32%",
+      image: "/product-1.png",
+    },
+    {
+      id: 'bs2',
+      title: "Tech Joggers - Water-Repellent and Breathable for Active Days",
+      price: 5200,
+      oldPrice: 8000,
+      discount: "-35%",
+      image: "/product-2.png",
+    },
+    {
+      id: 'bs3',
+      title: "Classic Bomber Jacket - Timeless Design with Modern Functionality",
+      price: 8900,
+      oldPrice: 12500,
+      discount: "-29%",
+      image: "/product-3.png",
+    },
+    {
+      id: 'bs4',
+      title: "Performance Polo - Moisture-Wicking Fabric for All-Day Freshness",
+      price: 3800,
+      oldPrice: 6000,
+      discount: "-37%",
+      image: "/product-4.png",
+    }
+  ]
+};

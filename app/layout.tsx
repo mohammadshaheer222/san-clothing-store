@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { AnnouncementBar, Navbar } from "@/components/layout";
+import { AnnouncementBar, Navbar, Footer } from "@/components/layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +32,7 @@ export default function RootLayout({
         <AnnouncementBar />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { Hero, FAQ, Collection, Marquee } from "./sections";
+import { Hero, FAQ, Collection, Marquee, CollectionBanner, BestSeller } from "./sections";
 
 import { HOME_HERO_DATA } from "@/constants/mock-data";
 
@@ -10,7 +10,9 @@ export default function PageContent() {
                 <Marquee />
             </div>
             <Collection />
+            <CollectionBanner />
+            <BestSeller />
             <FAQ />
         </div>
     );
-}
+}
