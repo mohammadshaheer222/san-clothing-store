@@ -43,7 +43,7 @@ export const Navbar = ({
   return (
     <>
       <nav
-        className="bg-[#f9f9f9] border-b border-neutral-100 sticky top-0 z-50 py-5 ipad-land:py-3.5"
+        className="bg-[#f9f9f9] border-b border-neutral-100 sticky top-0 z-50 py-2"
       >
         <Container size="xl" className="px-12! ipad-land:px-4!">
           <Flex align="center" justify="between" className="relative">
