@@ -16,7 +16,7 @@ export const FAQ = () => {
   };
 
   return (
-    <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10'>
+    <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10 pt-0!'>
       <Flex direction="col" gap={10} className="mx-auto w-full">
         <SectionHeader
           title={FAQ_CONTENT.title}

@@ -27,5 +27,11 @@ export interface Product {
   rating: number;
   reviews: number;
   image: string;
+  images?: string[];
   deliveryText: string;
+  sizes?: string[];
+  colors?: { name: string; hex: string }[];
+  category?: string;
+  careInstructions?: string[];
+  badge?: string;
 }

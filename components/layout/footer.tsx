@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className="bg-white-soft pt-10 pb-10 mt-auto border-t border-black/10">
       <Container>
-        <Grid cols={1} md={4} gap={12} className="mb-10">
+        <Grid cols={1} md={4} gap={5} className="mb-10">
           {/* Brand and About */}
           <div className="flex flex-col gap-6">
             <Typography variant="h3" serif className="text-black tracking-widest uppercase">

@@ -5,7 +5,7 @@ import { Section, SectionHeader, ProductCard, ProductSlider } from '@/components
 
 export const Collection = () => {
   return (
-    <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10'>
+    <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pt-0!'>
       <SectionHeader
         title={COLLECTION_DATA.title}
         description={COLLECTION_DATA.description}

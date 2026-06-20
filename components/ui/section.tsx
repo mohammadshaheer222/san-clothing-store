@@ -34,7 +34,7 @@ export const Section = ({
       className={`relative w-full overflow-hidden ${heightClass} ${bg} ${pyClass} ${className}`}
     >
       {container ? (
-        <Container size={containerSize} className={`h-full ${containerClassName}`}>
+        <Container size={containerSize} className={`h-full pt-10 ${containerClassName}`}>
           {children}
         </Container>
       ) : children}

@@ -1,9 +1,10 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { Section, Typography, Button, Flex } from '@/components/ui';
 import { COLLECTION_PROMO_DATA } from '@/constants/mock-data';
 
 export const CollectionBanner = () => {
-  const { title, description, buttonText, leftImage, rightImage } = COLLECTION_PROMO_DATA;
+  const { title, description, buttonText, buttonLink, leftImage, rightImage } = COLLECTION_PROMO_DATA;
 
   return (
     <Section
@@ -33,13 +34,15 @@ export const CollectionBanner = () => {
               {description}
             </Typography>
             <div className="pt-4">
-              <Button
-                variant="white"
-                size="lg"
-                className="rounded-2xl px-6 py-4 text-xs tracking-widest uppercase font-semibold text-black hover:bg-neutral-200 transition-colors"
-              >
-                {buttonText}
-              </Button>
+              <Link href={buttonLink}>
+                <Button
+                  variant="white"
+                  size="lg"
+                  className="rounded-2xl px-6 py-4 text-xs tracking-widest uppercase font-semibold text-black hover:bg-neutral-200 transition-colors"
+                >
+                  {buttonText}
+                </Button>
+              </Link>
             </div>
           </Flex>
         </div>
