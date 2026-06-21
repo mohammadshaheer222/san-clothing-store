@@ -27,7 +27,7 @@ interface ProductInfoProps {
   whatsappNumber?: string;
 }
 
-const WHATSAPP_NUMBER = '923001234567'; // placeholder — update as needed
+const WHATSAPP_NUMBER = '9744931030'; // placeholder — update as needed
 
 export const ProductInfo = ({
   title,
@@ -156,10 +156,10 @@ export const ProductInfo = ({
                 key={size}
                 onClick={() => { setSelectedSize(size); setSizeError(false); }}
                 className={`w-11 h-11 rounded-sm border text-xs font-bold uppercase transition-all duration-200 ${selectedSize === size
-                    ? 'bg-primary text-white border-primary'
-                    : sizeError
-                      ? 'border-red-300 text-neutral-700 hover:border-primary'
-                      : 'border-neutral-200 text-neutral-700 hover:border-primary hover:text-primary'
+                  ? 'bg-primary text-white border-primary'
+                  : sizeError
+                    ? 'border-red-300 text-neutral-700 hover:border-primary'
+                    : 'border-neutral-200 text-neutral-700 hover:border-primary hover:text-primary'
                   }`}
               >
                 {size}
