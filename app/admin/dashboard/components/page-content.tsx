@@ -7,6 +7,7 @@ import { LogoutButton } from "./sections/logout-button";
 import { ProductManager } from "./sections/product-manager";
 import { BannerManager } from "./sections/banner-manager";
 import { FaqManager } from "./sections/faq-manager";
+import { StripeManager } from "./sections/stripe-manager";
 
 interface DashboardPageContentProps {
   adminEmail: string;
@@ -54,6 +55,7 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
                 {activeSection === "products" && "Product Inventory"}
                 {activeSection === "banners" && "Homepage Banner CMS"}
                 {activeSection === "faqs" && "Frequently Asked Questions CMS"}
+                {activeSection === "stripes" && "Storefront Stripes CMS"}
               </Typography>
             </div>
           </Flex>
@@ -65,6 +67,7 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
           {activeSection === "products" && <ProductManager />}
           {activeSection === "banners" && <BannerManager />}
           {activeSection === "faqs" && <FaqManager />}
+          {activeSection === "stripes" && <StripeManager />}
         </main>
       </div>
     </div>

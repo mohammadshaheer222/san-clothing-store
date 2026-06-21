@@ -51,31 +51,15 @@ export const ProductCard = ({ product, showRating = false, className = '' }: Pro
         <Typography variant="p" className="text-[13px] font-semibold leading-tight text-neutral-900 line-clamp-2 min-h-[2.5rem]">
           {product.title}
         </Typography>
-        {showRating && product.rating !== undefined && (
-          <Flex align="center" gap={1}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                size={12}
-                className={i < product.rating! ? 'fill-amber-400 text-amber-400' : 'text-neutral-200'}
-              />
-            ))}
-            {product.reviews !== undefined && (
-              <Typography variant="p" className="text-[11px] text-neutral-400 ml-1">
-                ({product.reviews})
-              </Typography>
-            )}
-          </Flex>
-        )}
         <div className="mt-auto">
           <Flex align="center" gap={2}>
-            {product.oldPrice && (
+            {product.oldPrice && product.oldPrice > 0 ? (
               <Typography variant="p" className="text-[13px] text-neutral-400 line-through">
-                ₹{product.oldPrice.toLocaleString()}.00
+                ₹{(product.oldPrice / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </Typography>
-            )}
+            ) : null}
             <Typography variant="p" className="text-[13px] font-bold text-neutral-900">
-              ₹{product.price.toLocaleString()}.00
+              ₹{(product.price / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Typography>
           </Flex>
         </div>

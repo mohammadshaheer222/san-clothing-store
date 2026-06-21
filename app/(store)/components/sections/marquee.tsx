@@ -2,19 +2,25 @@
 
 import { Flex, Typography } from '@/components/ui';
 
-const MARQUEE_ITEMS = [
+const DEFAULT_MARQUEE_ITEMS = [
   "Free Shipping on Prepaid Orders",
   "COD Available",
   "Featured Collection",
 ];
 
-export const Marquee = () => {
+interface MarqueeProps {
+  items?: string[];
+}
+
+export const Marquee = ({ items = DEFAULT_MARQUEE_ITEMS }: MarqueeProps) => {
+  const activeItems = items.length > 0 ? items : DEFAULT_MARQUEE_ITEMS;
+
   return (
     <div className="bg-primary py-3.5 overflow-hidden whitespace-nowrap border-y border-white/10">
       <div className="flex animate-marquee hover:[animation-play-state:paused]">
         {[...Array(4)].map((_, i) => (
           <Flex key={i} align="center" gap={40} className="flex-shrink-0 gap-10!">
-            {MARQUEE_ITEMS.map((item, index) => (
+            {activeItems.map((item, index) => (
               <Flex key={index} align="center" gap={40}>
                 <Typography
                   variant="p"

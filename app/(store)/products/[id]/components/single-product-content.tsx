@@ -1,12 +1,13 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import { PRODUCTS_DATA } from '@/constants/mock-data';
 import { Section, Typography, Flex, SectionHeader, ProductCard, ProductSlider } from '@/components/ui';
 import { ProductGallery } from './product-gallery';
 import { ProductInfo } from './product-info';
+import { apiFetch } from '@/lib/api-client';
 
 interface Product {
   id: string;
@@ -15,8 +16,6 @@ interface Product {
   price: number;
   oldPrice?: number;
   discount?: string;
-  rating: number;
-  reviews: number;
   image: string;
   images?: string[];
   deliveryText: string;
@@ -34,10 +33,31 @@ interface SingleProductContentProps {
 export const SingleProductContent = ({ product }: SingleProductContentProps) => {
   const images = product.images?.length ? product.images : [product.image];
 
-  // Related products — same category, exclude current
-  const related = PRODUCTS_DATA.filter(
-    (p) => p.id !== product.id && (p.category === product.category || true)
-  ).slice(0, 4);
+  const [related, setRelated] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    const fetchRelated = async () => {
+      try {
+        setLoading(true);
+        const data = await apiFetch<Product[]>(`/api/products/${product.id}/related`);
+        if (active) {
+          setRelated(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch related products:", err);
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+    fetchRelated();
+    return () => {
+      active = false;
+    };
+  }, [product.id]);
 
   return (
     <div className="flex flex-col bg-white-soft">
@@ -93,8 +113,6 @@ export const SingleProductContent = ({ product }: SingleProductContentProps) => 
               price={product.price}
               oldPrice={product.oldPrice}
               discount={product.discount}
-              rating={product.rating}
-              reviews={product.reviews}
               sizes={product.sizes}
               colors={product.colors}
               category={product.category}
@@ -119,7 +137,7 @@ export const SingleProductContent = ({ product }: SingleProductContentProps) => 
       </Section>
 
       {/* You Might Also Like */}
-      {related.length > 0 && (
+      {!loading && related.length > 0 && (
         <Section bg="bg-white!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10">
           <SectionHeader
             title="You Might Also Like"

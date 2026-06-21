@@ -48,7 +48,7 @@ export interface CreateProductData {
 // ---- Helper to serialize Mongoose doc to plain object with id -----
 function serializeProduct(product: any) {
   if (!product) return product;
-  const serialized = { ...product };
+  const serialized = JSON.parse(JSON.stringify(product));
   if (product._id) {
     serialized.id = product._id.toString();
   }
@@ -168,4 +168,46 @@ export async function deleteProduct(id: string) {
   await Product.findByIdAndDelete(id);
 
   return { deleted: true, id };
+}
+
+/**
+ * Fetches related products.
+ * Returns products of the same category (excluding current),
+ * fallback to other products if not enough.
+ */
+export async function getRelatedProducts(id: string, limit: number = 4) {
+  await connectDB();
+
+  if (!isValidObjectId(id)) {
+    // If not a valid ObjectId (e.g., mock ID fallback), return random/latest products
+    const products = await Product.find().limit(limit).lean();
+    return products.map(serializeProduct);
+  }
+
+  const currentProduct = await Product.findById(id).lean();
+  if (!currentProduct) {
+    // Current product not found in DB, return latest products
+    const products = await Product.find().limit(limit).lean();
+    return products.map(serializeProduct);
+  }
+
+  // 1. Fetch products in same category excluding current product
+  const filter: any = { _id: { $ne: id } };
+  if (currentProduct.category) {
+    filter.category = currentProduct.category;
+  }
+
+  let related = await Product.find(filter).limit(limit).lean();
+
+  // 2. If we don't have enough related products, fill up with other products
+  if (related.length < limit) {
+    const fillLimit = limit - related.length;
+    const excludeIds = [id, ...related.map((p) => p._id.toString())];
+    const fillProducts = await Product.find({ _id: { $nin: excludeIds } })
+      .limit(fillLimit)
+      .lean();
+    related = [...related, ...fillProducts];
+  }
+
+  return related.map(serializeProduct);
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Star, Truck, Shield, RefreshCw, MessageCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Truck, Shield, RefreshCw, MessageCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Typography, Flex, Badge, Button } from '@/components/ui';
 
@@ -16,8 +16,6 @@ interface ProductInfoProps {
   price: number;
   oldPrice?: number;
   discount?: string;
-  rating: number;
-  reviews: number;
   sizes?: string[];
   colors?: Color[];
   category?: string;
@@ -35,8 +33,6 @@ export const ProductInfo = ({
   price,
   oldPrice,
   discount,
-  rating,
-  reviews,
   sizes = [],
   colors = [],
   category,
@@ -72,7 +68,7 @@ export const ProductInfo = ({
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="flex flex-col gap-6"
+      className="flex flex-col gap-4"
     >
       {/* Category + Badge row */}
       <Flex align="center" gap={3}>
@@ -97,40 +93,26 @@ export const ProductInfo = ({
         {title}
       </Typography>
 
-      {/* Rating */}
-      <Flex align="center" gap={3}>
-        <Flex align="center" gap={1}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              size={15}
-              className={i < rating ? 'fill-amber-400 text-amber-400' : 'text-neutral-200'}
-            />
-          ))}
-        </Flex>
-        <Typography variant="p" className="text-sm! text-neutral-500">
-          {reviews} {reviews === 1 ? 'review' : 'reviews'}
-        </Typography>
-      </Flex>
+
 
       {/* Price */}
       <div className="flex flex-col gap-1">
         <Flex align="baseline" gap={3}>
           <Typography variant="h3" className="text-neutral-900 text-2xl! font-bold">
-            ₹{price.toLocaleString()}.00
+            ₹{(price / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </Typography>
-          {oldPrice && (
+          {oldPrice && oldPrice > 0 && (
             <Typography variant="p" className="text-base! text-neutral-400 line-through">
-              ₹{oldPrice.toLocaleString()}.00
+              ₹{(oldPrice / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Typography>
           )}
           {discountPct && (
             <span className="text-emerald-600 text-sm font-bold">{discount} off</span>
           )}
         </Flex>
-        {oldPrice && (
+        {oldPrice && oldPrice > price && (
           <Typography variant="p" className="text-xs! text-emerald-600 font-medium">
-            You save ₹{(oldPrice - price).toLocaleString()}.00
+            You save ₹{((oldPrice - price) / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </Typography>
         )}
       </div>

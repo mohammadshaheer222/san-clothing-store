@@ -1,12 +1,14 @@
 import { Hero, FAQ, Collection, Marquee, CollectionBanner, BestSeller } from "./sections";
 import { HOME_HERO_DATA, COLLECTION_PROMO_DATA } from "@/constants/mock-data";
 import { getActiveBanner } from "@/services/banner.service";
+import { getStripes } from "@/services/stripe.service";
 
 export default async function PageContent() {
   let heroData = null;
   let promoData = null;
   let showCollection = true;
   let showBestSeller = true;
+  let marqueeItems: string[] | undefined = undefined;
 
   try {
     const activeHero = await getActiveBanner("hero");
@@ -50,12 +52,19 @@ export default async function PageContent() {
     console.error("Failed to load homepage sections visibility configuration:", error);
   }
 
+  try {
+    const stripes = await getStripes();
+    marqueeItems = stripes.marquee;
+  } catch (error) {
+    console.error("Failed to load dynamic stripes for marquee:", error);
+  }
+
   return (
     <div className="flex flex-col gap-16 bg-white-soft">
       {heroData && (
         <div className="flex flex-col">
           <Hero {...heroData} />
-          <Marquee />
+          <Marquee items={marqueeItems} />
         </div>
       )}
       {showCollection && <Collection />}

@@ -12,7 +12,6 @@ const SORT_OPTIONS = [
   { label: 'Featured', value: 'featured' },
   { label: 'Price: Low to High', value: 'price-asc' },
   { label: 'Price: High to Low', value: 'price-desc' },
-  { label: 'Best Rated', value: 'rating' },
 ];
 
 export const ProductsGrid = () => {
@@ -44,9 +43,7 @@ export const ProductsGrid = () => {
       case 'price-desc':
         list.sort((a, b) => b.price - a.price);
         break;
-      case 'rating':
-        list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
-        break;
+
     }
 
     return list;
@@ -132,7 +129,6 @@ export const ProductsGrid = () => {
             <ProductCard
               key={product.id}
               product={{ ...product, oldPrice: product.oldPrice ?? 0 }}
-              showRating
               className="!w-full flex-shrink-0 snap-none"
             />
           ))}

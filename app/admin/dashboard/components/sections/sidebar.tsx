@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Typography } from "@/components/ui";
-import { Tag, Image, HelpCircle } from "lucide-react";
+import { Tag, Image, HelpCircle, Columns } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ export function Sidebar({ isOpen, onClose, activeSection, onSectionChange }: Sid
     { id: "products", label: "Products", icon: <Tag size={18} /> },
     { id: "banners", label: "Banners CMS", icon: <Image size={18} /> },
     { id: "faqs", label: "FAQ CMS", icon: <HelpCircle size={18} /> },
+    { id: "stripes", label: "Stripes CMS", icon: <Columns size={18} /> },
   ];
 
   return (

@@ -78,3 +78,12 @@ export interface FAQItem {
   updatedAt?: string;
 }
 
+export interface StripeConfig {
+  id: string;
+  key: "header" | "marquee";
+  content: string[];
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+

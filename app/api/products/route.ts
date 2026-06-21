@@ -23,12 +23,12 @@ const createProductSchema = z.object({
   title: z.string().min(1, "Title is required").max(200, "Title must be under 200 characters"),
   description: z.string().min(1, "Description is required"),
   price: z.number().min(0, "Price must be a positive number"),
-  oldPrice: z.number().min(0).optional(),
-  discount: z.string().optional(),
+  oldPrice: z.number().min(0).optional().nullable(),
+  discount: z.string().optional().nullable(),
   rating: z.number().min(0).max(5).default(0),
   reviews: z.number().min(0).default(0),
   image: z.string().url("Main image must be a valid URL"),
-  imagePublicId: z.string().optional(),
+  imagePublicId: z.string().optional().nullable(),
   images: z.array(z.string().url()).optional(),
   imagePublicIds: z.array(z.string()).optional(),
   deliveryText: z.string().min(1, "Delivery text is required"),
@@ -36,7 +36,7 @@ const createProductSchema = z.object({
   colors: z.array(colorSchema).optional(),
   category: z.string().optional(),
   careInstructions: z.array(z.string()).optional(),
-  badge: z.string().optional(),
+  badge: z.string().optional().nullable(),
   isBestSeller: z.boolean().optional(),
   isBuiltForJourney: z.boolean().optional(),
 });
@@ -87,7 +87,14 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   }
 
   // 2. Validate input schema
-  const data = await validateBody(createProductSchema, req);
+  const rawBody = await validateBody(createProductSchema, req);
+
+  // Normalise optional nulls for Mongoose create
+  const data: any = { ...rawBody };
+  if (data.oldPrice === null) data.oldPrice = undefined;
+  if (data.discount === null) data.discount = undefined;
+  if (data.badge === null) data.badge = undefined;
+  if (data.imagePublicId === null) data.imagePublicId = undefined;
 
   // 3. Create product
   const product = await createProduct(data);
