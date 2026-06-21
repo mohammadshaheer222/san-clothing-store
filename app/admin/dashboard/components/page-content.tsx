@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { Flex, Typography } from "@/components/ui";
 import { Sidebar } from "./sections/sidebar";
 import { LogoutButton } from "./sections/logout-button";
+import { ProductManager } from "./sections/product-manager";
+import { BannerManager } from "./sections/banner-manager";
+import { FaqManager } from "./sections/faq-manager";
 
 interface DashboardPageContentProps {
   adminEmail: string;
@@ -11,6 +14,7 @@ interface DashboardPageContentProps {
 
 export default function DashboardPageContent({ adminEmail }: DashboardPageContentProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("products");
 
   const formattedDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -22,7 +26,12 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
   return (
     <div className="min-h-screen bg-white-soft flex relative">
       {/* Sidebar (drawer on mobile, static on desktop) */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
@@ -42,7 +51,9 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
 
             <div>
               <Typography variant="h3" className="text-lg! font-bold text-neutral-800 tracking-tight">
-                Dashboard
+                {activeSection === "products" && "Product Inventory"}
+                {activeSection === "banners" && "Homepage Banner CMS"}
+                {activeSection === "faqs" && "Frequently Asked Questions CMS"}
               </Typography>
             </div>
           </Flex>
@@ -51,14 +62,9 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
 
         {/* Content body */}
         <main className="flex-1 p-6 overflow-auto">
-          <div className="border border-dashed border-neutral-200 bg-white rounded-2xl h-full flex flex-col items-center justify-center p-8 text-center min-h-[300px] shadow-sm">
-            <Typography variant="h3" className="text-[#0C2565] font-semibold mb-2">
-              Dashboard Content Removed
-            </Typography>
-            <Typography variant="p" className="text-neutral-500 text-sm max-w-sm">
-              All dashboard stats, widgets, and recent order lists have been successfully cleared.
-            </Typography>
-          </div>
+          {activeSection === "products" && <ProductManager />}
+          {activeSection === "banners" && <BannerManager />}
+          {activeSection === "faqs" && <FaqManager />}
         </main>
       </div>
     </div>

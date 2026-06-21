@@ -7,13 +7,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { FAQ_CONTENT } from '@/constants/mock-data';
 import { Section, Typography, Flex, SectionHeader } from '@/components/ui';
+import { useFaqs } from '@/hooks';
 
 export const FAQ = () => {
+  const { faqs, loading } = useFaqs();
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  if (loading) {
+    return (
+      <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10 pt-0!'>
+        <div className="w-full flex flex-col gap-4 animate-pulse">
+          <div className="h-8 bg-neutral-200 rounded w-1/4 mx-auto" />
+          <div className="h-4 bg-neutral-200 rounded w-1/2 mx-auto" />
+          <div className="h-16 bg-neutral-200 rounded-2xl w-full mt-6" />
+          <div className="h-16 bg-neutral-200 rounded-2xl w-full" />
+          <div className="h-16 bg-neutral-200 rounded-2xl w-full" />
+        </div>
+      </Section>
+    );
+  }
+
+  const items = faqs.length > 0 ? faqs : FAQ_CONTENT.items;
+
+  if (items.length === 0) return null;
 
   return (
     <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10 pt-0!'>
@@ -23,11 +43,11 @@ export const FAQ = () => {
           description={FAQ_CONTENT.description}
         />
         <div className="flex flex-col gap-5 w-full">
-          {FAQ_CONTENT.items.map((item, index) => {
+          {items.map((item, index) => {
             const isOpen = activeIndex === index;
             return (
               <div
-                key={index}
+                key={'id' in item ? (item as any).id : index}
                 className="group border-b border-neutral-100 bg-white rounded-2xl transition-all duration-500 px-5"
               >
                 <button
@@ -76,3 +96,4 @@ export const FAQ = () => {
     </Section>
   );
 };
+

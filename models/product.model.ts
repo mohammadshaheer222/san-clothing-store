@@ -17,13 +17,19 @@ export interface IProduct extends Document {
   rating: number;
   reviews: number;
   image: string;
+  /** Cloudinary public_id for the main image — used for deletion */
+  imagePublicId?: string;
   images?: string[];
+  /** Cloudinary public_ids for the gallery images — used for deletion */
+  imagePublicIds?: string[];
   deliveryText: string;
   sizes?: string[];
   colors?: { name: string; hex: string }[];
   category?: string;
   careInstructions?: string[];
   badge?: string;
+  isBestSeller?: boolean;
+  isBuiltForJourney?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -62,7 +68,9 @@ const ProductSchema = new Schema<IProduct>(
       required: [true, "Main image URL is required"],
       trim: true,
     },
+    imagePublicId: { type: String, trim: true },
     images: [{ type: String, trim: true }],
+    imagePublicIds: [{ type: String, trim: true }],
     deliveryText: {
       type: String,
       required: [true, "Delivery text is required"],
@@ -78,6 +86,8 @@ const ProductSchema = new Schema<IProduct>(
     category: { type: String, trim: true, index: true },
     careInstructions: [{ type: String, trim: true }],
     badge: { type: String, trim: true },
+    isBestSeller: { type: Boolean, default: false },
+    isBuiltForJourney: { type: Boolean, default: false },
   },
   {
     timestamps: true,          // adds createdAt & updatedAt automatically

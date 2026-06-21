@@ -34,10 +34,20 @@ export async function connectDB(): Promise<Mongoose> {
       .then((mg) => {
         console.log("✅ MongoDB connected");
         return mg;
+      })
+      .catch((err) => {
+        // Reset so the next request gets a fresh connection attempt
+        cached.promise = null;
+        throw err;
       });
   }
 
-  cached.conn = await cached.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (err) {
+    cached.promise = null;
+    throw err;
+  }
   return cached.conn;
 }
 

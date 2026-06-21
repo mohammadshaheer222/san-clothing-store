@@ -1,14 +1,21 @@
-"use client";
-
 import React from "react";
 import { Flex, Typography } from "@/components/ui";
+import { Tag, Image, HelpCircle } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  activeSection: string;
+  onSectionChange: (section: string) => void;
 }
 
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
+export function Sidebar({ isOpen, onClose, activeSection, onSectionChange }: SidebarProps) {
+  const menuItems = [
+    { id: "products", label: "Products", icon: <Tag size={18} /> },
+    { id: "banners", label: "Banners CMS", icon: <Image size={18} /> },
+    { id: "faqs", label: "FAQ CMS", icon: <HelpCircle size={18} /> },
+  ];
+
   return (
     <>
       {/* Mobile drawer backdrop */}
@@ -27,7 +34,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         ].join(" ")}
       >
         {/* Logo and close button for mobile */}
-        <Flex align="center" justify="between" className="p-5 border-b border-neutral-200 max-h-[64px]">
+        <Flex align="center" justify="between" className="p-5 border-b border-neutral-200 max-h-[64px] flex-shrink-0">
           <Flex align="center" gap={3}>
             <div className="w-9 h-9 rounded-xl bg-[#0C2565] flex items-center justify-center shadow-md shadow-[#0C2565]/20">
               <span className="text-base font-bold text-white">S</span>
@@ -53,6 +60,32 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             </svg>
           </button>
         </Flex>
+
+        {/* Navigation Items */}
+        <nav className="flex-1 p-4 space-y-1.5 overflow-y-auto">
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  onSectionChange(item.id);
+                  onClose();
+                }}
+                className={`w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? "bg-primary/5 text-primary"
+                    : "text-neutral-500 hover:text-neutral-800 hover:bg-neutral-50"
+                }`}
+              >
+                <span className={isActive ? "text-primary" : "text-neutral-400"}>
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
       </aside>
     </>
   );

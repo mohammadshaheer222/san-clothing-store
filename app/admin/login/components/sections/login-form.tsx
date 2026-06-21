@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+
 import { useRouter } from "next/navigation";
 import { InputField } from "@/components/admin/ui/input-field";
 import { AdminButton } from "@/components/admin/ui/admin-button";
 import { FormError } from "@/components/admin/ui/form-error";
+import { useAuth } from "@/hooks";
 
 interface FieldErrors {
   email?: string;
@@ -13,12 +15,11 @@ interface FieldErrors {
 
 export function LoginForm() {
   const router = useRouter();
+  const { login, loading, error: formError, setError: setFormError } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   function validate(): boolean {
@@ -36,27 +37,10 @@ export function LoginForm() {
 
     if (!validate()) return;
 
-    setLoading(true);
-    try {
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        setFormError(data.error ?? "Login failed. Please try again.");
-        return;
-      }
-
+    const success = await login(email.trim(), password);
+    if (success) {
       router.push("/admin/dashboard");
       router.refresh();
-    } catch {
-      setFormError("Network error. Please check your connection.");
-    } finally {
-      setLoading(false);
     }
   }
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { Flex, Typography } from "@/components/ui";
 import { AdminButton } from "@/components/admin/ui/admin-button";
+import { useAuth } from "@/hooks";
 
 interface LogoutButtonProps {
   adminEmail: string;
@@ -11,13 +11,14 @@ interface LogoutButtonProps {
 
 export function LogoutButton({ adminEmail }: LogoutButtonProps) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const { logout, loading } = useAuth();
 
   async function handleLogout() {
-    setLoading(true);
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
-    router.refresh();
+    const success = await logout();
+    if (success) {
+      router.push("/admin/login");
+      router.refresh();
+    }
   }
 
   return (

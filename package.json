@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:admin": "tsx --env-file=.env.local scripts/seed-admin.ts"
+    "seed:admin": "tsx --env-file=.env.local scripts/seed-admin.ts",
+    "seed:products": "tsx --env-file=.env.local scripts/seed-products.ts",
+    "seed:banners": "tsx --env-file=.env.local scripts/seed-banners.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.0",
     "cookie": "^1.1.1",
     "framer-motion": "^12.38.0",
     "jsonwebtoken": "^9.0.3",
