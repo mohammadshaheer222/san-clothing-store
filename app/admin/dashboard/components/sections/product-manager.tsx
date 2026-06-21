@@ -165,10 +165,10 @@ export function ProductManager() {
                       <span className="text-neutral-500 font-medium">{prod.category || "Uncategorized"}</span>
                     </td>
                     <td className="px-6 py-3.5 text-right font-bold text-neutral-800 text-sm">
-                      ${(prod.price / 100).toFixed(2)}
+                      ₹{(prod.price / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
                     <td className="px-6 py-3.5 text-right text-neutral-400 font-medium">
-                      {prod.oldPrice ? `$${(prod.oldPrice / 100).toFixed(2)}` : "—"}
+                      {prod.oldPrice ? `₹${(prod.oldPrice / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "—"}
                     </td>
                     <td className="px-6 py-3.5">
                       <Flex align="center" justify="center" gap={3}>
@@ -222,11 +222,10 @@ export function ProductManager() {
                     <button
                       key={pNum}
                       onClick={() => setPage(pNum)}
-                      className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
-                        page === pNum
+                      className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${page === pNum
                           ? "bg-primary text-white"
                           : "text-neutral-500 hover:bg-neutral-100"
-                      }`}
+                        }`}
                     >
                       {pNum}
                     </button>

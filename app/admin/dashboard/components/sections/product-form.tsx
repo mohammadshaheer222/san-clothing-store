@@ -232,7 +232,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
             {/* Price */}
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Price ($) *</label>
+              <label className="font-semibold text-neutral-700">Price (₹) *</label>
               <input
                 type="number"
                 step="0.01"
@@ -247,7 +247,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
             {/* Old Price */}
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Compare-at Price ($) (Optional)</label>
+              <label className="font-semibold text-neutral-700">Compare-at Price (₹) (Optional)</label>
               <input
                 type="number"
                 step="0.01"

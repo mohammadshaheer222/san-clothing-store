@@ -60,7 +60,7 @@ export const ProductInfo = ({
     const colorText = selectedColor ? ` | Color: ${selectedColor.name}` : '';
     const sizeText = selectedSize ? ` | Size: ${selectedSize}` : '';
     const message = encodeURIComponent(
-      `Hi, I would like to order:\n\n*${title}*${sizeText}${colorText}\n\nPrice: Rs. ${price.toLocaleString()}.00\n\nPlease confirm availability. Thank you!`
+      `Hi, I would like to order:\n\n*${title}*${sizeText}${colorText}\n\nPrice: ₹${price.toLocaleString()}.00\n\nPlease confirm availability. Thank you!`
     );
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -117,11 +117,11 @@ export const ProductInfo = ({
       <div className="flex flex-col gap-1">
         <Flex align="baseline" gap={3}>
           <Typography variant="h3" className="text-neutral-900 text-2xl! font-bold">
-            Rs. {price.toLocaleString()}.00
+            ₹{price.toLocaleString()}.00
           </Typography>
           {oldPrice && (
             <Typography variant="p" className="text-base! text-neutral-400 line-through">
-              Rs. {oldPrice.toLocaleString()}.00
+              ₹{oldPrice.toLocaleString()}.00
             </Typography>
           )}
           {discountPct && (
@@ -130,7 +130,7 @@ export const ProductInfo = ({
         </Flex>
         {oldPrice && (
           <Typography variant="p" className="text-xs! text-emerald-600 font-medium">
-            You save Rs. {(oldPrice - price).toLocaleString()}.00
+            You save ₹{(oldPrice - price).toLocaleString()}.00
           </Typography>
         )}
       </div>

@@ -71,11 +71,11 @@ export const ProductCard = ({ product, showRating = false, className = '' }: Pro
           <Flex align="center" gap={2}>
             {product.oldPrice && (
               <Typography variant="p" className="text-[13px] text-neutral-400 line-through">
-                Rs. {product.oldPrice.toLocaleString()}.00
+                ₹{product.oldPrice.toLocaleString()}.00
               </Typography>
             )}
             <Typography variant="p" className="text-[13px] font-bold text-neutral-900">
-              Rs. {product.price.toLocaleString()}.00
+              ₹{product.price.toLocaleString()}.00
             </Typography>
           </Flex>
         </div>
