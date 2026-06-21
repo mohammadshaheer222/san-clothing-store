@@ -1,6 +1,8 @@
 import { AnnouncementBar, Navbar, Footer } from "@/components/layout";
 import { getStripes } from "@/services/stripe.service";
 
+export const dynamic = "force-dynamic";
+
 export default async function StoreLayout({
   children,
 }: {

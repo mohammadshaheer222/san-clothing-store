@@ -203,7 +203,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
           <div className="grid grid-cols-2 gap-6 mob:grid-cols-1">
             {/* Title */}
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Product Title *</label>
+              <label className="font-semibold text-neutral-700">Product Title <span className="text-red-500">*</span></label>
               <input
                 type="text"
                 value={title}
@@ -216,7 +216,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
             {/* Category */}
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Category *</label>
+              <label className="font-semibold text-neutral-700">Category <span className="text-red-500">*</span></label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -232,7 +232,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
             {/* Price */}
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Price (₹) *</label>
+              <label className="font-semibold text-neutral-700">Price (₹) <span className="text-red-500">*</span></label>
               <input
                 type="number"
                 step="0.01"
@@ -261,7 +261,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
             {/* Delivery Text */}
             <div className="flex flex-col gap-2 col-span-2 mob:col-span-1">
-              <label className="font-semibold text-neutral-700">Delivery Text *</label>
+              <label className="font-semibold text-neutral-700">Delivery Text <span className="text-red-500">*</span></label>
               <input
                 type="text"
                 value={deliveryText}
@@ -274,7 +274,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
 
           {/* Description */}
           <div className="flex flex-col gap-2">
-            <label className="font-semibold text-neutral-700">Description *</label>
+            <label className="font-semibold text-neutral-700">Description <span className="text-red-500">*</span></label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -343,7 +343,7 @@ export function ProductForm({ product, onClose, onSuccess }: ProductFormProps) {
           {/* Main Image Upload */}
           <div className="grid grid-cols-2 gap-6 mob:grid-cols-1 border-t border-neutral-100 pt-6">
             <div className="flex flex-col gap-2">
-              <label className="font-semibold text-neutral-700">Main Product Image *</label>
+              <label className="font-semibold text-neutral-700">Main Product Image <span className="text-red-500">*</span></label>
               <div className="flex items-center gap-4">
                 {imageUrl ? (
                   <div className="w-24 h-24 rounded-2xl overflow-hidden border border-neutral-200 relative group flex-shrink-0">

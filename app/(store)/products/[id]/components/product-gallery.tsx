@@ -45,16 +45,15 @@ export const ProductGallery = ({ images, title }: ProductGalleryProps) => {
 
       {/* Thumbnail Strip */}
       {images.length > 1 && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 pb-10 max-mob-land:pb-[10px]">
           {images.map((img, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
-              className={`relative w-20 h-24 rounded-sm overflow-hidden flex-shrink-0 transition-all duration-200 ${
-                activeIndex === i
-                  ? 'ring-2 ring-primary ring-offset-2'
-                  : 'opacity-60 hover:opacity-100'
-              }`}
+              className={`relative w-20 h-24 rounded-sm overflow-hidden flex-shrink-0 transition-all duration-200 ${activeIndex === i
+                ? 'ring-2 ring-primary ring-offset-2'
+                : 'opacity-60 hover:opacity-100'
+                }`}
             >
               <Image src={img} alt={`Thumbnail ${i + 1}`} fill className="object-cover" />
             </button>

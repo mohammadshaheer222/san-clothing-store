@@ -9,7 +9,8 @@
     "lint": "eslint",
     "seed:admin": "tsx --env-file=.env.local scripts/seed-admin.ts",
     "seed:products": "tsx --env-file=.env.local scripts/seed-products.ts",
-    "seed:banners": "tsx --env-file=.env.local scripts/seed-banners.ts"
+    "seed:banners": "tsx --env-file=.env.local scripts/seed-banners.ts",
+    "seed:reviews": "tsx --env-file=.env.local scripts/seed-reviews.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

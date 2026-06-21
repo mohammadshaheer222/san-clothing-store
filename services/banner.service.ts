@@ -58,6 +58,13 @@ export interface UpsertBannerData {
   rightImagePublicId?: string;
   showCollectionSection?: boolean;
   showBestSellerSection?: boolean;
+  showReviewsSection?: boolean;
+  collectionTitle?: string;
+  collectionDescription?: string;
+  bestSellerTitle?: string;
+  bestSellerDescription?: string;
+  reviewsTitle?: string;
+  reviewsDescription?: string;
 }
 
 /**

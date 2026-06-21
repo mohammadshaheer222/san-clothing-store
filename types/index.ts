@@ -31,6 +31,13 @@ export interface Banner {
   /** Homepage section toggles */
   showCollectionSection?: boolean;
   showBestSellerSection?: boolean;
+  showReviewsSection?: boolean;
+  collectionTitle?: string;
+  collectionDescription?: string;
+  bestSellerTitle?: string;
+  bestSellerDescription?: string;
+  reviewsTitle?: string;
+  reviewsDescription?: string;
 }
 
 export interface NavLink {
@@ -72,6 +79,17 @@ export interface FAQItem {
   id: string;
   question: string;
   answer: string;
+  order: number;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ReviewItem {
+  id: string;
+  authorName: string;
+  rating: number;
+  content: string;
   order: number;
   isActive: boolean;
   createdAt?: string;

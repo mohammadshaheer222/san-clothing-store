@@ -48,15 +48,15 @@ export const Navbar = ({
         <Container size="xl" className="px-12! ipad-land:px-4!">
           <Flex align="center" justify="between" className="relative">
             <Flex align="center" className="flex-1 ipad-land:z-10">
-              {/* <Link href="/" className="ipad-land:hidden hover:opacity-70 transition-opacity">
+              <Link href="/" className="ipad-land:hidden hover:opacity-70 transition-opacity">
                 <Typography
                   variant="h3"
                   serif
-                  className="text-2xl tracking-[0.18em] text-neutral-900 uppercase whitespace-nowrap"
+                  className="text-[20px] tracking-[0.18em] text-neutral-900 uppercase whitespace-nowrap font-bold"
                 >
                   {config.name}
                 </Typography>
-              </Link> */}
+              </Link>
 
               {/* Mobile Menu Icon - Hidden on Desktop */}
               <div className="hidden ipad-land:block">
@@ -109,15 +109,7 @@ export const Navbar = ({
               </motion.div>
             </Flex>
             <Flex align="center" justify="end" gap={6} className="flex-1 ipad-land:z-10 ipad-land:gap-3.5">
-              <Button
-                variant="ghost"
-                className="p-1.5! text-neutral-800 hover:scale-110 relative"
-              >
-                <ShoppingCart size={22} strokeWidth={1.2} />
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-[7px] w-3.5 h-3.5 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
-                  0
-                </span>
-              </Button>
+              <span className="hidden" />
             </Flex>
           </Flex>
         </Container>

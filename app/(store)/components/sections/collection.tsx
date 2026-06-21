@@ -4,28 +4,40 @@ import { COLLECTION_DATA } from '@/constants/mock-data';
 import { Section, SectionHeader, ProductCard, ProductSlider } from '@/components/ui';
 import { useProducts } from '@/hooks';
 
-export const Collection = () => {
+interface CollectionProps {
+  title?: string;
+  description?: string;
+}
+
+export const Collection = ({ title, description }: CollectionProps) => {
+  const activeTitle = title || COLLECTION_DATA.title;
+  const activeDescription = description || COLLECTION_DATA.description;
+
   const { products, loading } = useProducts({
     isBuiltForJourney: true,
     limit: 8,
   });
 
-  if (loading) return null;
-  if (products.length === 0) return null;
+  if (!loading && products.length === 0) return null;
 
   return (
-    <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pt-0!'>
+    <Section id="collections" bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pt-0!'>
       <SectionHeader
-        title={COLLECTION_DATA.title}
-        description={COLLECTION_DATA.description}
+        title={activeTitle}
+        description={activeDescription}
       />
       {loading ? (
-        <div className="grid grid-cols-4 sm-lap:grid-cols-3 ipad-land:grid-cols-2 mob-land:grid-cols-1 gap-6 w-full animate-pulse">
+        <div className="flex gap-6 overflow-hidden animate-pulse">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex flex-col gap-4">
-              <div className="aspect-4/5 w-full bg-neutral-200 rounded-sm" />
-              <div className="h-4 bg-neutral-200 rounded w-3/4" />
-              <div className="h-3 bg-neutral-200 rounded w-1/2" />
+            <div
+              key={i}
+              className="w-[calc(25%-18px)] sm-lap:w-[calc(33.333%-16px)] ipad-land:w-[calc(50%-12px)] mob-land:w-[85%] flex-shrink-0 flex flex-col gap-4 bg-white rounded-2xl p-3 border border-neutral-100/80 shadow-xs"
+            >
+              <div className="aspect-4/5 w-full bg-neutral-100 rounded-xl" />
+              <div className="flex flex-col gap-2.5">
+                <div className="h-4 bg-neutral-200 rounded-md w-3/4" />
+                <div className="h-3.5 bg-neutral-200 rounded-md w-1/4" />
+              </div>
             </div>
           ))}
         </div>

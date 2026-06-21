@@ -1,4 +1,4 @@
-import { Hero, FAQ, Collection, Marquee, CollectionBanner, BestSeller } from "./sections";
+import { Hero, FAQ, Collection, Marquee, CollectionBanner, BestSeller, Reviews } from "./sections";
 import { HOME_HERO_DATA, COLLECTION_PROMO_DATA } from "@/constants/mock-data";
 import { getActiveBanner } from "@/services/banner.service";
 import { getStripes } from "@/services/stripe.service";
@@ -8,6 +8,7 @@ export default async function PageContent() {
   let promoData = null;
   let showCollection = true;
   let showBestSeller = true;
+  let showReviews = true;
   let marqueeItems: string[] | undefined = undefined;
 
   try {
@@ -42,11 +43,13 @@ export default async function PageContent() {
     console.error("Failed to load dynamic collection promo banner:", error);
   }
 
+  let sectionsConfig: any = null;
   try {
-    const sectionsConfig = await getActiveBanner("homepage-sections");
+    sectionsConfig = await getActiveBanner("homepage-sections");
     if (sectionsConfig) {
       showCollection = sectionsConfig.showCollectionSection !== false;
       showBestSeller = sectionsConfig.showBestSellerSection !== false;
+      showReviews = sectionsConfig.showReviewsSection !== false;
     }
   } catch (error) {
     console.error("Failed to load homepage sections visibility configuration:", error);
@@ -67,9 +70,25 @@ export default async function PageContent() {
           <Marquee items={marqueeItems} />
         </div>
       )}
-      {showCollection && <Collection />}
+      {showCollection && (
+        <Collection
+          title={sectionsConfig?.collectionTitle}
+          description={sectionsConfig?.collectionDescription}
+        />
+      )}
       {promoData && <CollectionBanner {...promoData} />}
-      {showBestSeller && <BestSeller />}
+      {showBestSeller && (
+        <BestSeller
+          title={sectionsConfig?.bestSellerTitle}
+          description={sectionsConfig?.bestSellerDescription}
+        />
+      )}
+      {showReviews && (
+        <Reviews
+          title={sectionsConfig?.reviewsTitle}
+          description={sectionsConfig?.reviewsDescription}
+        />
+      )}
       <FAQ />
     </div>
   );

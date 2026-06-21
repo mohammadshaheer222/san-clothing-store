@@ -52,45 +52,38 @@ export function BannerManager() {
   const [uploadingLeft, setUploadingLeft] = useState(false);
   const [uploadingRight, setUploadingRight] = useState(false);
 
-  // Section visibility toggles form state
-  const [showCollection, setShowCollection] = useState(true);
-  const [showBestSeller, setShowBestSeller] = useState(true);
+
 
   useEffect(() => {
     if (banners.length > 0) {
-      // Populate Hero Banner form
-      const hero = banners.find((b) => b.type === "hero");
-      if (hero) {
-        setHeroSubtitle(hero.subtitle || "");
-        setHeroTitle(hero.title);
-        setHeroBgImage(hero.backgroundImage || "");
-        setHeroBgPublicId(hero.backgroundImagePublicId || "");
-        setHeroBtnText(hero.buttonText);
-        setHeroBtnLink(hero.buttonLink);
-        setHeroBtnVariant(hero.buttonVariant || "white");
-        setHeroIsActive(hero.isActive);
-      }
+      Promise.resolve().then(() => {
+        // Populate Hero Banner form
+        const hero = banners.find((b) => b.type === "hero");
+        if (hero) {
+          setHeroSubtitle(hero.subtitle || "");
+          setHeroTitle(hero.title);
+          setHeroBgImage(hero.backgroundImage || "");
+          setHeroBgPublicId(hero.backgroundImagePublicId || "");
+          setHeroBtnText(hero.buttonText);
+          setHeroBtnLink(hero.buttonLink);
+          setHeroBtnVariant(hero.buttonVariant || "white");
+          setHeroIsActive(hero.isActive);
+        }
 
-      // Populate Collection Banner form
-      const promo = banners.find((b) => b.type === "collection-promo");
-      if (promo) {
-        setPromoTitle(promo.title);
-        setPromoDesc(promo.description || "");
-        setPromoLeftImage(promo.leftImage || "");
-        setPromoLeftPublicId(promo.leftImagePublicId || "");
-        setPromoRightImage(promo.rightImage || "");
-        setPromoRightPublicId(promo.rightImagePublicId || "");
-        setPromoBtnText(promo.buttonText);
-        setPromoBtnLink(promo.buttonLink);
-        setPromoIsActive(promo.isActive);
-      }
-
-      // Populate Homepage Sections toggles
-      const sectionsConfig = banners.find((b) => b.type === "homepage-sections");
-      if (sectionsConfig) {
-        setShowCollection(sectionsConfig.showCollectionSection !== false);
-        setShowBestSeller(sectionsConfig.showBestSellerSection !== false);
-      }
+        // Populate Collection Banner form
+        const promo = banners.find((b) => b.type === "collection-promo");
+        if (promo) {
+          setPromoTitle(promo.title);
+          setPromoDesc(promo.description || "");
+          setPromoLeftImage(promo.leftImage || "");
+          setPromoLeftPublicId(promo.leftImagePublicId || "");
+          setPromoRightImage(promo.rightImage || "");
+          setPromoRightPublicId(promo.rightImagePublicId || "");
+          setPromoBtnText(promo.buttonText);
+          setPromoBtnLink(promo.buttonLink);
+          setPromoIsActive(promo.isActive);
+        }
+      });
     }
   }, [banners]);
 
@@ -173,13 +166,6 @@ export function BannerManager() {
         buttonLink: promoBtnLink.trim(),
         isActive: promoIsActive,
       };
-    } else if (activeTab === "homepage-sections") {
-      payload = {
-        type: "homepage-sections",
-        showCollectionSection: showCollection,
-        showBestSellerSection: showBestSeller,
-        isActive: true,
-      };
     }
 
     await saveBanner(payload);
@@ -217,16 +203,6 @@ export function BannerManager() {
           }`}
         >
           Collection Promo Banner
-        </button>
-        <button
-          onClick={() => { setActiveTab("homepage-sections"); setError(""); setSuccessMsg(""); }}
-          className={`px-5 py-3 border-b-2 text-sm font-semibold transition-all ${
-            activeTab === "homepage-sections"
-              ? "border-primary text-primary"
-              : "border-transparent text-neutral-500 hover:text-neutral-700"
-          }`}
-        >
-          Homepage Sections Visibility
         </button>
       </Flex>
 
@@ -277,7 +253,7 @@ export function BannerManager() {
               </div>
 
               <div className="flex flex-col gap-2 col-span-2 mob:col-span-1">
-                <label className="font-semibold text-neutral-700">Main Title *</label>
+                <label className="font-semibold text-neutral-700">Main Title <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={heroTitle}
@@ -289,7 +265,7 @@ export function BannerManager() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Button CTA Text *</label>
+                <label className="font-semibold text-neutral-700">Button CTA Text <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={heroBtnText}
@@ -301,7 +277,7 @@ export function BannerManager() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Button Redirection URL *</label>
+                <label className="font-semibold text-neutral-700">Button Redirection URL <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={heroBtnLink}
@@ -315,7 +291,7 @@ export function BannerManager() {
 
             {/* Banner Background Image */}
             <div className="flex flex-col gap-2 border-t border-neutral-100 pt-6">
-              <label className="font-semibold text-neutral-700">Background Image *</label>
+              <label className="font-semibold text-neutral-700">Background Image <span className="text-red-500">*</span></label>
               <div className="flex items-center gap-4">
                 {heroBgImage ? (
                   <div className="w-48 h-32 rounded-2xl overflow-hidden border border-neutral-200 relative group flex-shrink-0">
@@ -387,7 +363,7 @@ export function BannerManager() {
 
             <div className="grid grid-cols-2 gap-6 mob:grid-cols-1">
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Promo Title *</label>
+                <label className="font-semibold text-neutral-700">Promo Title <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={promoTitle}
@@ -410,7 +386,7 @@ export function BannerManager() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Button CTA Text *</label>
+                <label className="font-semibold text-neutral-700">Button CTA Text <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={promoBtnText}
@@ -422,7 +398,7 @@ export function BannerManager() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Button Redirection URL *</label>
+                <label className="font-semibold text-neutral-700">Button Redirection URL <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   value={promoBtnLink}
@@ -486,7 +462,7 @@ export function BannerManager() {
 
               {/* Right Promo Image */}
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-neutral-700">Right Side Promo Image *</label>
+                <label className="font-semibold text-neutral-700">Right Side Promo Image <span className="text-red-500">*</span></label>
                 <div className="flex items-center gap-4">
                   {promoRightImage ? (
                     <div className="w-32 h-32 rounded-2xl overflow-hidden border border-neutral-200 relative group flex-shrink-0 bg-neutral-50">
@@ -547,57 +523,7 @@ export function BannerManager() {
               </label>
             </div>
           </div>
-        ) : (
-          /* HOMEPAGE SECTIONS VISIBILITY toggles */
-          <div className="space-y-6">
-            <Typography variant="h3" className="text-lg! font-bold text-neutral-800">
-              Homepage Sections Visibility
-            </Typography>
-            <Typography variant="p" className="text-xs! text-neutral-500 leading-relaxed max-w-xl block">
-              Toggle the visibility of main structural sections on your homepage storefront instantly.
-            </Typography>
-
-            <div className="space-y-4 border-t border-neutral-100 pt-6">
-              {/* Collection Section Toggle */}
-              <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-2xl border border-neutral-200/60 max-w-xl">
-                <div>
-                  <label htmlFor="toggle-collection" className="font-semibold text-neutral-700 block cursor-pointer select-none">
-                    Built for the Journey (Collection Section)
-                  </label>
-                  <span className="text-xs text-neutral-400 block mt-0.5">
-                    Show or hide the category grid and banner galleries.
-                  </span>
-                </div>
-                <input
-                  type="checkbox"
-                  id="toggle-collection"
-                  checked={showCollection}
-                  onChange={(e) => setShowCollection(e.target.checked)}
-                  className="w-5 h-5 border border-neutral-300 rounded text-primary focus:ring-0 cursor-pointer"
-                />
-              </div>
-
-              {/* Best Sellers Section Toggle */}
-              <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-2xl border border-neutral-200/60 max-w-xl">
-                <div>
-                  <label htmlFor="toggle-bestseller" className="font-semibold text-neutral-700 block cursor-pointer select-none">
-                    Best Sellers Section
-                  </label>
-                  <span className="text-xs text-neutral-400 block mt-0.5">
-                    Show or hide the best sellers product carousel layout.
-                  </span>
-                </div>
-                <input
-                  type="checkbox"
-                  id="toggle-bestseller"
-                  checked={showBestSeller}
-                  onChange={(e) => setShowBestSeller(e.target.checked)}
-                  className="w-5 h-5 border border-neutral-300 rounded text-primary focus:ring-0 cursor-pointer"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        ) : null}
 
         {/* Submit Action buttons */}
         <div className="flex justify-end gap-3 pt-6 border-t border-neutral-100">
@@ -607,7 +533,7 @@ export function BannerManager() {
             size="md"
             disabled={submitting || uploadingHeroBg || uploadingLeft || uploadingRight}
           >
-            {submitting ? "Saving changes..." : "Save Settings Configuration"}
+            {submitting ? "Saving changes..." : "Save Banner Settings"}
           </Button>
         </div>
       </form>

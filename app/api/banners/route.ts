@@ -36,6 +36,13 @@ const upsertBannerSchema = z.object({
   // Homepage section toggles
   showCollectionSection: z.boolean().optional(),
   showBestSellerSection: z.boolean().optional(),
+  showReviewsSection: z.boolean().optional(),
+  collectionTitle: z.string().optional(),
+  collectionDescription: z.string().optional(),
+  bestSellerTitle: z.string().optional(),
+  bestSellerDescription: z.string().optional(),
+  reviewsTitle: z.string().optional(),
+  reviewsDescription: z.string().optional(),
 });
 
 /**

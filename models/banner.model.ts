@@ -30,6 +30,13 @@ export interface IBanner extends Document {
   /** Homepage section toggles */
   showCollectionSection?: boolean;
   showBestSellerSection?: boolean;
+  showReviewsSection?: boolean;
+  collectionTitle?: string;
+  collectionDescription?: string;
+  bestSellerTitle?: string;
+  bestSellerDescription?: string;
+  reviewsTitle?: string;
+  reviewsDescription?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -82,6 +89,13 @@ const BannerSchema = new Schema<IBanner>(
     // Homepage Section Toggles
     showCollectionSection: { type: Boolean, default: true },
     showBestSellerSection: { type: Boolean, default: true },
+    showReviewsSection: { type: Boolean, default: true },
+    collectionTitle: { type: String, trim: true },
+    collectionDescription: { type: String, trim: true },
+    bestSellerTitle: { type: String, trim: true },
+    bestSellerDescription: { type: String, trim: true },
+    reviewsTitle: { type: String, trim: true },
+    reviewsDescription: { type: String, trim: true },
   },
   {
     timestamps: true,

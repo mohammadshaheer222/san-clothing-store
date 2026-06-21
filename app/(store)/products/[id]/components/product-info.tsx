@@ -55,8 +55,9 @@ export const ProductInfo = ({
 
     const colorText = selectedColor ? ` | Color: ${selectedColor.name}` : '';
     const sizeText = selectedSize ? ` | Size: ${selectedSize}` : '';
+    const formattedPrice = (price / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const message = encodeURIComponent(
-      `Hi, I would like to order:\n\n*${title}*${sizeText}${colorText}\n\nPrice: ₹${price.toLocaleString()}.00\n\nPlease confirm availability. Thank you!`
+      `Hi, I would like to order:\n\n*${title}*${sizeText}${colorText}\n\nPrice: ₹${formattedPrice}\n\nPlease confirm availability. Thank you!`
     );
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -207,7 +208,7 @@ export const ProductInfo = ({
 
       {/* Care Instructions accordion */}
       {careInstructions.length > 0 && (
-        <div className="border border-neutral-100 rounded-2xl overflow-hidden">
+        <div className="border border-neutral-100 rounded-2xl overflow-hidden mb-10">
           <button
             onClick={() => setCareOpen(!careOpen)}
             className="w-full flex items-center justify-between px-5 py-4 bg-white text-left"

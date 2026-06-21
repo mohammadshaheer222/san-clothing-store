@@ -7,6 +7,8 @@ import { LogoutButton } from "./sections/logout-button";
 import { ProductManager } from "./sections/product-manager";
 import { BannerManager } from "./sections/banner-manager";
 import { FaqManager } from "./sections/faq-manager";
+import { ReviewManager } from "./sections/review-manager";
+import { SectionsManager } from "./sections/sections-manager";
 import { StripeManager } from "./sections/stripe-manager";
 
 interface DashboardPageContentProps {
@@ -53,8 +55,10 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
             <div>
               <Typography variant="h3" className="text-lg! font-bold text-neutral-800 tracking-tight">
                 {activeSection === "products" && "Product Inventory"}
+                {activeSection === "sections" && "Homepage Sections CMS"}
                 {activeSection === "banners" && "Homepage Banner CMS"}
                 {activeSection === "faqs" && "Frequently Asked Questions CMS"}
+                {activeSection === "reviews" && "Customer Reviews CMS"}
                 {activeSection === "stripes" && "Storefront Stripes CMS"}
               </Typography>
             </div>
@@ -65,8 +69,10 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
         {/* Content body */}
         <main className="flex-1 p-6 overflow-auto">
           {activeSection === "products" && <ProductManager />}
+          {activeSection === "sections" && <SectionsManager />}
           {activeSection === "banners" && <BannerManager />}
           {activeSection === "faqs" && <FaqManager />}
+          {activeSection === "reviews" && <ReviewManager />}
           {activeSection === "stripes" && <StripeManager />}
         </main>
       </div>

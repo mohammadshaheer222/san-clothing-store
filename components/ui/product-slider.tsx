@@ -7,9 +7,16 @@ import { Flex } from '@/components/ui';
 interface ProductSliderProps {
   children: ReactNode;
   itemCount: number;
+  showDotsAlways?: boolean;
+  hideArrows?: boolean;
 }
 
-export const ProductSlider = ({ children, itemCount }: ProductSliderProps) => {
+export const ProductSlider = ({
+  children,
+  itemCount,
+  showDotsAlways = false,
+  hideArrows = false,
+}: ProductSliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -37,7 +44,7 @@ export const ProductSlider = ({ children, itemCount }: ProductSliderProps) => {
   };
 
   return (
-    <div className="relative group/slider">
+    <div className="relative group/slider w-full">
       <div
         ref={sliderRef}
         onScroll={handleScroll}
@@ -46,8 +53,8 @@ export const ProductSlider = ({ children, itemCount }: ProductSliderProps) => {
         {children}
       </div>
 
-      {/* Sliding Dots for Mobile/Tablet */}
-      <Flex justify="center" gap={2} className="mt-4 md:hidden">
+      {/* Sliding Dots */}
+      <Flex justify="center" gap={2} className={`mt-4 ${showDotsAlways ? 'flex' : 'md:hidden'}`}>
         {Array.from({ length: itemCount }).map((_, index) => (
           <button
             key={index}
@@ -60,20 +67,24 @@ export const ProductSlider = ({ children, itemCount }: ProductSliderProps) => {
       </Flex>
 
       {/* Navigation Arrows */}
-      <button
-        onClick={() => scroll('left')}
-        className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 transition-all duration-300 z-10 border border-neutral-100 hidden md:flex"
-        aria-label="Previous"
-      >
-        <ChevronLeft size={20} />
-      </button>
-      <button
-        onClick={() => scroll('right')}
-        className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 transition-all duration-300 z-10 border border-neutral-100 hidden md:flex"
-        aria-label="Next"
-      >
-        <ChevronRight size={20} />
-      </button>
+      {!hideArrows && (
+        <>
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 transition-all duration-300 z-10 border border-neutral-100 hidden md:flex"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 transition-all duration-300 z-10 border border-neutral-100 hidden md:flex"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </>
+      )}
     </div>
   );
 };

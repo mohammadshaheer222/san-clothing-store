@@ -142,6 +142,7 @@ export const SingleProductContent = ({ product }: SingleProductContentProps) => 
           <SectionHeader
             title="You Might Also Like"
             description="More premium pieces from the SAN collection."
+
           />
           <ProductSlider itemCount={related.length}>
             {related.map((p) => (

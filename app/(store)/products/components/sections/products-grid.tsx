@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { PRODUCTS_DATA } from '@/constants/mock-data';
 import { Section, Typography, Flex, ProductCard, Button } from '@/components/ui';
 import { useProducts } from '@/hooks';
 
@@ -53,23 +52,6 @@ export const ProductsGrid = () => {
 
   return (
     <Section bg="bg-white-soft!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10">
-      {/* Category selector */}
-      <Flex gap={2} className="flex-wrap border-b border-neutral-100 pb-6">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold border transition-all ${
-              activeCategory === cat
-                ? "bg-primary border-primary text-white"
-                : "border-neutral-250 text-neutral-600 hover:border-neutral-400 bg-white"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </Flex>
-
       <Flex justify="between" align="center" className="flex-wrap gap-4">
         {/* Sort dropdown */}
         <div className="relative">

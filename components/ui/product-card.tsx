@@ -25,9 +25,9 @@ export const ProductCard = ({ product, showRating = false, className = '' }: Pro
   return (
     <Link
       href={`/products/${product.id}`}
-      className={`w-[calc(25%-18px)] sm-lap:w-[calc(33.333%-16px)] ipad-land:w-[calc(50%-12px)] mob-land:w-[85%] flex-shrink-0 snap-start group flex flex-col gap-4 h-full ${className}`}
+      className={`w-[calc(25%-18px)] sm-lap:w-[calc(33.333%-16px)] ipad-land:w-[calc(50%-12px)] mob-land:w-[85%] flex-shrink-0 snap-start group flex flex-col gap-4 h-full bg-white rounded-2xl p-3 border border-neutral-100/80 shadow-xs hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ${className}`}
     >
-      <div className="relative aspect-4/5 bg-neutral-50 overflow-hidden rounded-sm flex-shrink-0">
+      <div className="relative aspect-4/5 bg-neutral-50 overflow-hidden rounded-xl flex-shrink-0">
         <Image
           src={product.image}
           alt={product.title}
@@ -48,7 +48,7 @@ export const ProductCard = ({ product, showRating = false, className = '' }: Pro
         )}
       </div>
       <div className="flex flex-col gap-2.5 flex-grow">
-        <Typography variant="p" className="text-[13px] font-semibold leading-tight text-neutral-900 line-clamp-2 min-h-[2.5rem]">
+        <Typography variant="p" className="text-[13px] font-semibold leading-tight text-neutral-900 line-clamp-2">
           {product.title}
         </Typography>
         <div className="mt-auto">
