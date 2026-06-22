@@ -21,7 +21,7 @@ export const Reviews = ({
 
   if (loading) {
     return (
-      <Section id="reviews" bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10">
+      <Section id="reviews" bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10 mob:gap-5">
         <div className="w-full flex flex-col gap-4 animate-pulse">
           <div className="h-8 bg-neutral-200 rounded w-1/4 mx-auto" />
           <div className="h-4 bg-neutral-200 rounded w-1/2 mx-auto" />
@@ -38,7 +38,7 @@ export const Reviews = ({
   if (reviews.length === 0) return null;
 
   return (
-    <Section id="reviews" bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10 pt-0!">
+    <Section id="reviews" bg="bg-white-soft!" py="py-0!" containerSize="lg" containerClassName="flex flex-col gap-10  pt-0! mob:gap-5">
       <SectionHeader
         title={activeTitle}
         description={activeDescription}
@@ -47,7 +47,7 @@ export const Reviews = ({
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="w-[calc(25%-18px)] sm-lap:w-[calc(33.333%-16px)] ipad-land:w-[calc(50%-12px)] mob-land:w-[85%] flex-shrink-0 snap-start flex flex-col gap-6 p-6 bg-white border border-neutral-100 rounded-2xl shadow-xs justify-between hover:shadow-sm transition-all duration-300"
+            className="w-[calc(25%-18px)] sm-lap:w-[calc(33.333%-16px)] ipad-land:w-[calc(50%-12px)] mob-land:w-[85%] flex-shrink-0 snap-start flex flex-col gap-6 p-6 bg-white rounded-2xl shadow-xs justify-between hover:shadow-sm transition-all duration-300"
           >
             <div className="flex flex-col gap-4">
               {/* Stars */}

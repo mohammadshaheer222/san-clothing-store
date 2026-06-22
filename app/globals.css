@@ -147,3 +147,17 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 var(--white-soft);
 }
+
+/* Initial "SAN" Fade Loader styles */
+.loader-active,
+.loader-active body {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+.loader-hidden #san-initial-loader {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

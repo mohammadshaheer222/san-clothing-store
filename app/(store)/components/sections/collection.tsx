@@ -21,7 +21,7 @@ export const Collection = ({ title, description }: CollectionProps) => {
   if (!loading && products.length === 0) return null;
 
   return (
-    <Section id="collections" bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pt-0!'>
+    <Section id="collections" bg="bg-white-soft!" py="py-0!" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10! mob:gap-5'>
       <SectionHeader
         title={activeTitle}
         description={activeDescription}

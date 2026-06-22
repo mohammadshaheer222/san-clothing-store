@@ -10,6 +10,8 @@ import { FaqManager } from "./sections/faq-manager";
 import { ReviewManager } from "./sections/review-manager";
 import { SectionsManager } from "./sections/sections-manager";
 import { StripeManager } from "./sections/stripe-manager";
+import { ValuesManager } from "./sections/values-manager";
+import { AboutManager } from "./sections/about-manager";
 
 interface DashboardPageContentProps {
   adminEmail: string;
@@ -57,9 +59,11 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
                 {activeSection === "products" && "Product Inventory"}
                 {activeSection === "sections" && "Homepage Sections CMS"}
                 {activeSection === "banners" && "Homepage Banner CMS"}
+                {activeSection === "values" && "Brand Values CMS"}
                 {activeSection === "faqs" && "Frequently Asked Questions CMS"}
                 {activeSection === "reviews" && "Customer Reviews CMS"}
                 {activeSection === "stripes" && "Storefront Stripes CMS"}
+                {activeSection === "about" && "About Page CMS"}
               </Typography>
             </div>
           </Flex>
@@ -71,9 +75,11 @@ export default function DashboardPageContent({ adminEmail }: DashboardPageConten
           {activeSection === "products" && <ProductManager />}
           {activeSection === "sections" && <SectionsManager />}
           {activeSection === "banners" && <BannerManager />}
+          {activeSection === "values" && <ValuesManager />}
           {activeSection === "faqs" && <FaqManager />}
           {activeSection === "reviews" && <ReviewManager />}
           {activeSection === "stripes" && <StripeManager />}
+          {activeSection === "about" && <AboutManager />}
         </main>
       </div>
     </div>

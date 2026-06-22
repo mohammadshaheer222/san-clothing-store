@@ -43,13 +43,15 @@ export const CollectionBanner = ({
         {/* Center Content */}
         <div className={`relative flex flex-col items-center justify-center text-center p-10 z-10 bg-black md:bg-transparent min-h-[400px] md:min-h-full ${!leftImage ? 'md:col-span-2' : ''}`}>
           <Flex direction="col" gap={6} align="center" className="max-w-md">
-            <Typography variant="h2" serif className="text-white uppercase tracking-[0.2em] text-3xl md:text-5xl">
-              {title}
-            </Typography>
-            <Typography variant="p" className="text-white/60 text-sm md:text-base max-w-[280px] font-light leading-relaxed">
-              {description}
-            </Typography>
-            <div className="pt-4">
+            <div className='flex flex-col gap-1'>
+              <Typography variant="h2" serif className="text-white uppercase tracking-[0.2em] text-3xl md:text-5xl">
+                {title}
+              </Typography>
+              <Typography variant="p" className="text-white/60 text-sm md:text-base max-w-[280px] font-light leading-relaxed">
+                {description}
+              </Typography>
+            </div>
+            <div className="">
               <Link href={buttonLink}>
                 <Button
                   variant="white"

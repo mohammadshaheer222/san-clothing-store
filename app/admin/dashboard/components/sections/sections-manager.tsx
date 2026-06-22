@@ -8,9 +8,12 @@ export function SectionsManager() {
   const { banners, loading, saving: submitting, error, successMsg, saveBanner, setError, setSuccessMsg } = useBanners();
 
   // Section visibility and contents form state
+  const [showValues, setShowValues] = useState(true);
   const [showCollection, setShowCollection] = useState(true);
   const [showBestSeller, setShowBestSeller] = useState(true);
   const [showReviews, setShowReviews] = useState(true);
+  const [valuesTitle, setValuesTitle] = useState("");
+  const [valuesDesc, setValuesDesc] = useState("");
   const [collectionTitle, setCollectionTitle] = useState("");
   const [collectionDesc, setCollectionDesc] = useState("");
   const [bestSellerTitle, setBestSellerTitle] = useState("");
@@ -23,9 +26,12 @@ export function SectionsManager() {
       const sectionsConfig = banners.find((b) => b.type === "homepage-sections");
       if (sectionsConfig) {
         Promise.resolve().then(() => {
+          setShowValues(sectionsConfig.showValuesSection !== false);
           setShowCollection(sectionsConfig.showCollectionSection !== false);
           setShowBestSeller(sectionsConfig.showBestSellerSection !== false);
           setShowReviews(sectionsConfig.showReviewsSection !== false);
+          setValuesTitle(sectionsConfig.valuesTitle || "");
+          setValuesDesc(sectionsConfig.valuesDescription || "");
           setCollectionTitle(sectionsConfig.collectionTitle || "");
           setCollectionDesc(sectionsConfig.collectionDescription || "");
           setBestSellerTitle(sectionsConfig.bestSellerTitle || "");
@@ -44,9 +50,12 @@ export function SectionsManager() {
 
     const payload = {
       type: "homepage-sections",
+      showValuesSection: showValues,
       showCollectionSection: showCollection,
       showBestSellerSection: showBestSeller,
       showReviewsSection: showReviews,
+      valuesTitle: valuesTitle.trim(),
+      valuesDescription: valuesDesc.trim(),
       collectionTitle: collectionTitle.trim(),
       collectionDescription: collectionDesc.trim(),
       bestSellerTitle: bestSellerTitle.trim(),
@@ -95,6 +104,50 @@ export function SectionsManager() {
           </div>
 
           <div className="space-y-6 border-t border-neutral-100 pt-6">
+            {/* Brand Values Config */}
+            <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-200/60 max-w-xl space-y-4">
+              <Flex align="center" justify="between" className="border-b border-neutral-250/40 pb-3">
+                <div>
+                  <label htmlFor="toggle-values" className="font-bold text-neutral-800 cursor-pointer select-none">
+                    &ldquo;Brand Values&rdquo; Section
+                  </label>
+                  <span className="text-xs text-neutral-400 block mt-0.5">
+                    Show or hide this section on the storefront.
+                  </span>
+                </div>
+                <input
+                  type="checkbox"
+                  id="toggle-values"
+                  checked={showValues}
+                  onChange={(e) => setShowValues(e.target.checked)}
+                  className="w-5 h-5 border border-neutral-300 rounded text-primary focus:ring-0 cursor-pointer"
+                />
+              </Flex>
+
+              <div className="space-y-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-semibold text-xs text-neutral-700">Section Title</label>
+                  <input
+                    type="text"
+                    value={valuesTitle}
+                    onChange={(e) => setValuesTitle(e.target.value)}
+                    placeholder="e.g. The SAN Standard"
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 focus:outline-none focus:border-primary transition-colors text-neutral-800 bg-white"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-semibold text-xs text-neutral-700">Section Description</label>
+                  <textarea
+                    value={valuesDesc}
+                    onChange={(e) => setValuesDesc(e.target.value)}
+                    placeholder="Enter section description..."
+                    rows={3}
+                    className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 focus:outline-none focus:border-primary transition-colors text-neutral-800 bg-white resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* Built for the Journey Config */}
             <div className="bg-neutral-50 p-6 rounded-2xl border border-neutral-200/60 max-w-xl space-y-4">
               <Flex align="center" justify="between" className="border-b border-neutral-250/40 pb-3">

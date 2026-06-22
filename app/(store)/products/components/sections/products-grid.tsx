@@ -51,7 +51,7 @@ export const ProductsGrid = () => {
   const activeSortLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? 'Featured';
 
   return (
-    <Section bg="bg-white-soft!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10">
+    <Section bg="bg-white-soft!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10 mob:gap-5">
       <Flex justify="between" align="center" className="flex-wrap gap-4">
         {/* Sort dropdown */}
         <div className="relative">

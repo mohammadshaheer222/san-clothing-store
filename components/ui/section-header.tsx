@@ -18,7 +18,7 @@ export const SectionHeader = ({
   return (
     <Flex
       direction="col"
-      gap={2}
+      gap={1}
       align={align}
       className={`w-full ${align === 'center' ? 'text-center' : align === 'end' ? 'text-right' : 'text-left'} ${className}`}
     >

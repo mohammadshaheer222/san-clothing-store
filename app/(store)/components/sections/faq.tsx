@@ -19,7 +19,7 @@ export const FAQ = () => {
 
   if (loading) {
     return (
-      <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10 pt-0!'>
+      <Section bg="bg-white-soft!" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 mob:gap-5 pb-10 pt-0!'>
         <div className="w-full flex flex-col gap-4 animate-pulse">
           <div className="h-8 bg-neutral-200 rounded w-1/4 mx-auto" />
           <div className="h-4 bg-neutral-200 rounded w-1/2 mx-auto" />
@@ -36,7 +36,7 @@ export const FAQ = () => {
   if (items.length === 0) return null;
 
   return (
-    <Section id="faq" bg="bg-white" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 py-10'>
+    <Section id="faq" bg="bg-white" py="py-0!" containerSize="lg" containerClassName='flex flex-col gap-10 mob:gap-5 py-10'>
       <Flex direction="col" gap={10} className="mx-auto w-full">
         <SectionHeader
           title={FAQ_CONTENT.title}

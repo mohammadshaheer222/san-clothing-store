@@ -21,7 +21,7 @@ export const BestSeller = ({ title, description }: BestSellerProps) => {
   if (!loading && products.length === 0) return null;
 
   return (
-    <Section id="best-sellers" bg="bg-white" py="py-24" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10'>
+    <Section id="best-sellers" bg="bg-white" py="py-0!" containerSize="lg" containerClassName='flex flex-col gap-10 pb-10 mob:gap-5'>
       <SectionHeader
         title={activeTitle}
         description={activeDescription}

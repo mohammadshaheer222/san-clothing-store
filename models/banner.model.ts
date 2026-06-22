@@ -31,12 +31,15 @@ export interface IBanner extends Document {
   showCollectionSection?: boolean;
   showBestSellerSection?: boolean;
   showReviewsSection?: boolean;
+  showValuesSection?: boolean;
   collectionTitle?: string;
   collectionDescription?: string;
   bestSellerTitle?: string;
   bestSellerDescription?: string;
   reviewsTitle?: string;
   reviewsDescription?: string;
+  valuesTitle?: string;
+  valuesDescription?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -90,12 +93,15 @@ const BannerSchema = new Schema<IBanner>(
     showCollectionSection: { type: Boolean, default: true },
     showBestSellerSection: { type: Boolean, default: true },
     showReviewsSection: { type: Boolean, default: true },
+    showValuesSection: { type: Boolean, default: true },
     collectionTitle: { type: String, trim: true },
     collectionDescription: { type: String, trim: true },
     bestSellerTitle: { type: String, trim: true },
     bestSellerDescription: { type: String, trim: true },
     reviewsTitle: { type: String, trim: true },
     reviewsDescription: { type: String, trim: true },
+    valuesTitle: { type: String, trim: true },
+    valuesDescription: { type: String, trim: true },
   },
   {
     timestamps: true,

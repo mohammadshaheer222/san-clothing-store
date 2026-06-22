@@ -19,7 +19,7 @@ export const Marquee = ({ items = DEFAULT_MARQUEE_ITEMS }: MarqueeProps) => {
     <div className="bg-primary py-3.5 overflow-hidden whitespace-nowrap border-y border-white/10">
       <div className="flex animate-marquee hover:[animation-play-state:paused]">
         {[...Array(4)].map((_, i) => (
-          <Flex key={i} align="center" gap={40} className="flex-shrink-0 gap-10!">
+          <Flex key={i} align="center" gap={40} className="flex-shrink-0 gap-10! mob:gap-5">
             {activeItems.map((item, index) => (
               <Flex key={index} align="center" gap={40}>
                 <Typography

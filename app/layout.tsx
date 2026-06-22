@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { FadeLoader } from "@/components/layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +28,29 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var shown = sessionStorage.getItem('san_loader_shown');
+                  if (shown) {
+                    document.documentElement.classList.add('loader-hidden');
+                  } else {
+                    document.documentElement.classList.add('loader-active');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-white-soft">
+        <FadeLoader />
         {children}
       </body>
     </html>
   );
 }
+

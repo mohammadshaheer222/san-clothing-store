@@ -138,7 +138,7 @@ export const SingleProductContent = ({ product }: SingleProductContentProps) => 
 
       {/* You Might Also Like */}
       {!loading && related.length > 0 && (
-        <Section bg="bg-white!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10">
+        <Section bg="bg-white!" py="py-16" containerSize="lg" containerClassName="flex flex-col gap-10 pb-10 mob:gap-5">
           <SectionHeader
             title="You Might Also Like"
             description="More premium pieces from the SAN collection."

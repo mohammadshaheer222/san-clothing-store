@@ -26,7 +26,7 @@ export const Section = ({
   containerClassName = ``
 }: SectionProps) => {
   const heightClass = fullHeight ? 'h-[calc(100dvh-92px)] mob-land:h-[calc(100dvh-84px)] min-h-[500px]' : minHeight;
-  const pyClass = typeof py === 'number' ? `py-${py}` : '';
+  const pyClass = typeof py === 'number' ? `py-${py}` : py;
 
   return (
     <section

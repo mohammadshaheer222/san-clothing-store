@@ -6,5 +6,7 @@ export * from './use-banners';
 export * from './use-faqs';
 export * from './use-stripes';
 export * from './use-reviews';
+export * from './use-values';
+export * from './use-about';
 
 

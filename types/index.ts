@@ -32,12 +32,15 @@ export interface Banner {
   showCollectionSection?: boolean;
   showBestSellerSection?: boolean;
   showReviewsSection?: boolean;
+  showValuesSection?: boolean;
   collectionTitle?: string;
   collectionDescription?: string;
   bestSellerTitle?: string;
   bestSellerDescription?: string;
   reviewsTitle?: string;
   reviewsDescription?: string;
+  valuesTitle?: string;
+  valuesDescription?: string;
 }
 
 export interface NavLink {
@@ -101,6 +104,34 @@ export interface StripeConfig {
   key: "header" | "marquee";
   content: string[];
   isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ValueItem {
+  id: string;
+  title: string;
+  description: string;
+  iconName: string;
+  order: number;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AboutContent {
+  id: string;
+  heroCaption: string;
+  heroTitle: string;
+  heroDescription: string;
+  narrativeTitle1: string;
+  narrativeDescription1: string;
+  narrativeTitle2: string;
+  narrativeDescription2: string;
+  narrativeImage: string;
+  narrativeImagePublicId?: string;
+  quoteText: string;
+  quoteAuthor: string;
   createdAt?: string;
   updatedAt?: string;
 }
